@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { withRouter } from "react-router-dom";
+
+import { createRecord } from "../services/airtable";
 
 import OsloKommuneLogo from "../assets/oslo-kommune.logo";
 
@@ -144,11 +147,58 @@ const intialForm = [
   }
 ];
 
-const FormPage = () => {
+const FormPage = ({ history }) => {
   const [form, setForm] = useState(intialForm);
   const [submitState, setSubmitState] = useState(false);
 
   const handleSubmit = () => {
+    console.log(
+      "handleSubmit - form.find(obj => obj.id === smittefrakk): ",
+      form.find(obj => obj.id === "smittefrakk")
+    );
+    const formToSubmit = {
+      smittefrakkBeholdning: form.find(obj => obj.id === "smittefrakk")
+        .currentQuantity,
+      smittefrakkBehov: form.find(obj => obj.id === "smittefrakk")
+        .estimatedNeed,
+      andedrettsvernFFP2Beholdning: form.find(
+        obj => obj.id === "andedrettsvernFFP2"
+      ).currentQuantity,
+      andedrettsvernFFP2Behov: form.find(
+        obj => obj.id === "andedrettsvernFFP2"
+      ).estimatedNeed,
+      andedrettsvernFFP3Beholdning: form.find(
+        obj => obj.id === "andedrettsvernFFP3"
+      ).currentQuantity,
+      andedrettsvernFFP3Behov: form.find(
+        obj => obj.id === "andedrettsvernFFP3"
+      ).estimatedNeed,
+      hanskerBeholdning: form.find(obj => obj.id === "hansker")
+        .currentQuantity,
+      hanskerBehov: form.find(obj => obj.id === "hansker").estimatedNeed,
+      oyebeskyttelseBeholdning: form.find(
+        obj => obj.id === "oyebeskyttelse"
+      ).currentQuantity,
+      oyebeskyttelseBehov: form.find(obj => obj.id === "oyebeskyttelse")
+        .estimatedNeed,
+      munnbindBeholdning: form.find(
+        obj => obj.id === "kirurgiskeMunnbind"
+      ).currentQuantity,
+      munnbindBehov: form.find(obj => obj.id === "kirurgiskeMunnbind")
+        .estimatedNeed,
+      munnbindVisirBeholdning: form.find(
+        obj => obj.id === "kirurgiskeMunnbindVisir"
+      ).currentQuantity,
+      munnbindVisirBehov: form.find(
+        obj => obj.id === "kirurgiskeMunnbindVisir"
+      ).estimatedNeed,
+      operasjonsluerBeholdning: form.find(
+        obj => obj.id === "operasjonsluer"
+      ).currentQuantity,
+      operasjonsluerBehov: form.find(obj => obj.id === "operasjonsluer")
+        .estimatedNeed
+    };
+    createRecord(formToSubmit);
     setSubmitState(true);
   };
 
@@ -194,14 +244,14 @@ const FormPage = () => {
     <Container>
       <FormHeader>
         <OsloKommuneLogo />
-        <Location>Bydel Stovner</Location>
+        <Location>Helseetaten</Location>
       </FormHeader>
 
-      <FormTitle>Smittevernsutstyr - ukentlig rapport</FormTitle>
       {submitState ? (
-        <div>HADETBRA</div>
+        <FormTitle>Din rapport ble registrert</FormTitle>
       ) : (
         <>
+          <FormTitle>Smittevernsutstyr - ukentlig rapport</FormTitle>
           <FormDescription>
             Her skal du fylle inn antall i beholdning av hver enkelt
             produkt, ikke hele pakker. Bruk tall, ikke bokstaver. Dersom
@@ -244,8 +294,16 @@ const FormPage = () => {
           </FormContainer>
         </>
       )}
+      <button
+        style={{ marginTop: "50px", width: "120px" }}
+        onClick={() => {
+          history.push("/");
+        }}
+      >
+        Gå til tabell
+      </button>
     </Container>
   );
 };
 
-export default FormPage;
+export default withRouter(FormPage);
