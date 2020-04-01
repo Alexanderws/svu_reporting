@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/svu_reporting/static/css/main.974058b2.chunk.css",
+    "main.js": "/svu_reporting/static/js/main.58c6d788.chunk.js",
+    "main.js.map": "/svu_reporting/static/js/main.58c6d788.chunk.js.map",
+    "runtime-main.js": "/svu_reporting/static/js/runtime-main.98488e4d.js",
+    "runtime-main.js.map": "/svu_reporting/static/js/runtime-main.98488e4d.js.map",
+    "static/js/2.11ed3a81.chunk.js": "/svu_reporting/static/js/2.11ed3a81.chunk.js",
+    "static/js/2.11ed3a81.chunk.js.map": "/svu_reporting/static/js/2.11ed3a81.chunk.js.map",
+    "index.html": "/svu_reporting/index.html",
+    "precache-manifest.c7e21288a84e6ed26c60c6fd18a3da3c.js": "/svu_reporting/precache-manifest.c7e21288a84e6ed26c60c6fd18a3da3c.js",
+    "service-worker.js": "/svu_reporting/service-worker.js",
+    "static/css/main.974058b2.chunk.css.map": "/svu_reporting/static/css/main.974058b2.chunk.css.map",
+    "static/js/2.11ed3a81.chunk.js.LICENSE.txt": "/svu_reporting/static/js/2.11ed3a81.chunk.js.LICENSE.txt",
+    "static/media/fonts.css": "/svu_reporting/static/media/OsloSans-RegularItalic.1b164fe0.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.98488e4d.js",
+    "static/js/2.11ed3a81.chunk.js",
+    "static/css/main.974058b2.chunk.css",
+    "static/js/main.58c6d788.chunk.js"
+  ]
+}
